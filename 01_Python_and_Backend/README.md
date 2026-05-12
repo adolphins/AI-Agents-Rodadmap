@@ -37,6 +37,8 @@
 
 ### 📖 必读书籍
 
+参考 [Amazon Best Sellers](https://www.amazon.com/Best-Sellers-Books-Python-Programming/zgbs/books/285856/ref=zg_bs_nav_books_3_3987) 和 [Reddit 社区推荐的 Python 学习书籍讨论](https://www.reddit.com/r/Python/comments/103i4d2/what_are_the_best_books_to_learn_python/) 
+
 | 封面 | 书名与说明 |
 |------|-------------|
 | 📘 | **《Learning Python》** (6th Edition)<br>*Powerful Object-Oriented Programming* —— 入门必备，实战性强 |
@@ -49,7 +51,6 @@
 
 - [FastAPI 官方中文文档](https://fastapi.tiangolo.com/zh/) – 业界良心，比很多教程都易懂  
 - [Streamlit 官方文档](https://docs.streamlit.io/) – 查询各种 UI 组件（按钮、聊天框等）的首选  
-- [Reddit 好帖汇总](https://www.reddit.com/r/Python/comments/103i4d2/what_are_the_best_books_to_learn_python/) – 社区推荐的 Python 学习书籍讨论
 
 ---
 
