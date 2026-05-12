@@ -5,6 +5,8 @@
 
 ---
 
+![Learning Python](/probable-adventure/01_Python_and_Backend/assets/covers/learning%20python%206th.jpg) 
+
 ## 🎯 核心目标
 
 - [ ] 掌握 Python 高阶特性（OOP、装饰器、多并发），告别只会写简单脚本的“小白”阶段。  
