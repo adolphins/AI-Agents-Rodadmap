@@ -498,71 +498,415 @@ Python 原生内置列表、字典、字符串等常用数据结构。这些内�
 
 ---
 
-### **Chapter 2. How Python Runs Programs**
-- Introducing the Python Interpreter
-- Program Execution
-  - The Programmer’s View
-  - Python’s View
-    - Bytecode compilation
-    - The Python Virtual Machine (PVM)
-    - Performance implications
-    - Development implications
-- WHY DOES PYTHON USE BYTECODE?
-- Execution-Model Variations
-  - Python Implementation Alternatives
-    - CPython: the standard
-    - Jython: Python for Java
-    - IronPython: Python for .NET
-    - Stackless: Python for concurrency
-    - PyPy: a JIT compiler for speed
-    - Numba: a JIT compiler for numeric speed
-    - Shed Skin: an AOT compiler for conforming code
-    - PyThran: an AOT compiler for numeric speed
-    - Cython: a Python/C hybrid for speed
-    - MicroPython: a Python subset for constraints
-- Standalone Executables
-- Future Possibilities
-- Chapter Summary
-- Test Your Knowledge: Quiz
-- Test Your Knowledge: Answers
+### Chapter 2. How Python Runs Programs Python 如何运行程序 
+
+本章和下一章主要讲解**程序的执行机制**：如何启动代码、Python 如何运行代码。
+本章先从宏观角度，讲解 **Python 解释器整体是如何执行程序的**。有了这个整体认知之后，第3章再深入带你动手实操，把自己的程序真正跑起来。
+
+程序启动的相关细节本身就和操作系统平台强相关，这两章里有些内容可能并不适用于你自己的 Python 使用方式，**和你学习目标无关的部分可以直接跳过**。
+同样，如果你以前用过类似开发工具、想尽快切入 Python 语言核心语法，也可以先略过这几章，留着以后查阅。
+对于其余读者，在正式开始编写和运行代码细节之前，我们先来简单了解一下 Python 运行代码的底层方式。
+
+#### Introducing the Python Interpreter 介绍 Python 解释器
+
+到目前为止，我们大多是把 Python 当作一门**编程语言**来讨论。
+但在最主流的使用形式中，它同时也是一套叫作**解释器**的软件系统。
+
+解释器是一种可以**执行其他程序**的程序。
+当你编写好 Python 程序后，Python 解释器会读取你的代码，并逐条执行其中的指令。
+简单来说：**解释器是架在你的代码和电脑硬件之间的一层逻辑中间层**。
+
+安装 Python 时，系统会生成多个组件，最基础包含：**解释器 + 支持库**。
+根据使用方式不同，Python 解释器可以是一个独立可执行程序，也可以是以库的形式链接到其他程序中。
+根据你使用的 Python 版本不同，解释器本身可能由 C 语言实现、由 Java 类实现，或是其他实现方式。
+
+无论是什么形式、哪种版本，**你写的 Python 代码都必须由这个解释器来运行**。
+也正因如此，你通常需要在电脑上先安装 Python 解释器。
+
+现阶段你**不用急着安装 Python**，除非你想跟着马上出现的简单示例一起动手操作。本书默认你到下一章再准备好 Python 环境即可。
+等你准备好安装时，不同平台的安装步骤略有差异，第3章会做简要介绍，**附录A 会给出完整详细安装教程**。
+
+
+#### Program Execution 程序的执行
+运行一个 Python 脚本究竟意味着什么，取决于你**以程序员视角**还是**以 Python 解释器视角**来看待这件事。这两种视角，对学习 Python 编程都有着重要意义。
+
+##### The Programmer’s View 程序员视角
+最简单也最常见的理解是：**Python 程序就是一个存放 Python 语句的文本文件**。
+例如下面示例 2-1 中的文件 `script0.py`，算是能想到的最简单的 Python 脚本之一，但它已经是一个**完整可运行**的 Python 程序。
+
+**示例 2-1 script0.py**
+```python
+print('hello world')
+print(2 ** 100)
+```
+
+这个文件包含两条 Python 打印语句，作用就是把一段字符串（引号里的文本）和一个数值表达式的结果（2 的 100 次方）输出到控制台（通常是运行程序的窗口界面）。
+
+暂时不用纠结这段代码的语法细节，我们现在只关心**它是如何被运行的**。本书后续章节会详细讲解 `print` 语句，以及为什么 Python 可以轻松计算 2 的 100 次方。
+
+你可以用任意文本编辑器创建这种代码文件（编辑器推荐见附录 A）。按照惯例，Python 程序文件后缀都以 **`.py`** 结尾。严格来说，只有需要被“导入（import）”的文件才强制要求这个后缀（这个概念下一章会解释），但为了统一规范，绝大多数 Python 文件都会使用 `.py` 后缀。
+
+把代码语句写进文本文件后，你需要**让 Python 执行这个文件**：也就是从上到下、依次运行文件里的所有代码语句。
+
+下一章会讲到，运行 Python 程序文件有很多方式：命令行输入指令、双击文件图标、在代码图形工具里运行等等。
+一切正常的话，执行文件后，你就会在电脑屏幕上看到两条打印结果，默认会显示在你运行程序的同一个窗口里：
+
+```
+hello world
+1267650600228229401496703205376
+```
+
+举个例子，在 Windows 笔记本的命令提示符窗口中用命令行运行该脚本，效果如下（用来验证代码没有拼写错误）：
+
+```
+C:\Users\me\code> py script0.py
+hello world
+1267650600228229401496703205376
+```
+
+如果你是编程新手，可以翻看第 3 章，里面会完整讲解**编写程序、运行程序**的全部细节。
+
+就本章而言，我们已经完成了一个 Python 脚本的运行：打印一段字符串和一个超大数字。
+这段代码当然拿不到风投，也没法在 GitHub 爆红，但它已经足以帮你理解**程序执行的基本原理**。
+
+##### Python’s View Python 解释器视角
+上一节的简要描述，是脚本语言的标准工作流程，对于大多数 Python 新手来说，了解这些通常就足够了：把代码写进文本文件，再用解释器运行这些文件。
+
+但在底层，当你下达“运行程序”指令时，背后实际发生的事情要更多。虽说编写 Python 代码并不强制要求弄懂底层内部原理，但提前了解 Python 的**运行时架构**，能帮你更好理解代码在整个程序执行流程中的位置和作用。
+
+当你让 Python 运行脚本时，代码真正开始执行前，会经历几个固定步骤：
+首先源码会被**编译**成一种叫作**字节码**的中间形式，随后交给**虚拟机**执行。
+这套流程适用于最主流的 Python 版本，稍后我们会介绍其他变体实现，先弄懂最通用的标准流程。
+
+###### Bytecode compilation 字节码编译
+这个过程几乎对开发者完全透明：当你运行 Python 程序时，Python 会先把文本文件里的**源代码语句**，编译转换为**字节码**格式。
+
+编译本质上只是一次**代码翻译**，字节码是一种**更底层、跨平台**的源码表示形式。简单理解：Python 会把每一行源码拆解成若干基础指令，翻译成对应的字节码指令。
+做字节码转换的核心目的是**提升执行速度**——字节码的运行效率，远高于直接逐行解析原始源码。
+
+前面提到这个过程**几乎完全隐藏**在后台：如果程序拥有文件写入权限，Python 会把编译好的字节码保存为 **`.pyc`** 文件（`.pyc` 代表编译后的 `.py` 源码）。
+严格来说，像上一节那样**单独运行单个顶层脚本文件**时，不会生成 `.pyc`；但在多文件大型项目中，除了入口主文件外，其他被导入的模块都会生成字节码文件。
+
+Python 会把字节码统一存放在源码同级目录下的 **`__pycache__`** 子文件夹中，文件名还会标注对应的 Python 版本（例如 `script0.cpython-312.pyc` 代表 Python 3.12 编译生成）。
+`__pycache__` 文件夹可以避免目录杂乱；带版本标识的命名规则，也能防止电脑上多个 Python 版本互相覆盖字节码文件。
+第 22 章会深入讲解字节码文件机制，对于大多数普通 Python 程序来说，这一过程完全自动、无需关心，而且其他 Python 实现版本也可能采用不同的字节码规则。
+
+那为什么要多此一举保存字节码？
+简单说：**为了加快程序启动速度**。
+下次再次运行程序时，只要满足以下条件，Python 会直接加载 `.pyc` 字节码，跳过重新编译步骤：
+1. 字节码文件存在；
+2. 自上次生成字节码后，源码没有被修改；
+3. 本次运行使用的 Python 版本和生成字节码的版本一致。
+
+具体规则：
+- **源码变更检测**
+Python 会在字节码文件中记录源码的**最后修改时间、文件大小**（也可选用哈希值）。加载字节码时会做比对，一旦你编辑并保存了源码，下次运行程序就会自动重新编译生成新的字节码。
+
+- **Python 版本检测**
+字节码文件名自带版本后缀，如果更换 Python 版本或实现运行程序，也会自动为当前版本重新生成并保存字节码。
+
+也就是说：**源码改动、更换 Python 版本**，都会触发字节码自动重新编译。
+
+如果 Python 没有文件写入权限、无法保存 `.pyc`，程序依然可以正常运行：字节码会在**内存中临时生成**，程序退出后直接丢弃，不会落地保存。
+
+对于大型项目，`.pyc` 文件能明显加快启动速度，建议保留。
+同时，字节码也是**程序分发的一种方式**：只要有兼容的 `.pyc` 文件，即便删掉原始 `.py` 源码，Python 也能正常运行程序。不过不能简单直接删源码，可能需要移动、重命名文件，或用到第 22 章介绍的特殊方法。
+如需打包时强制编译字节码，可以使用 Python 内置的 `compileall` 模块；也可以用后文提到的**独立可执行文件**方案分发程序。
+
+严格来讲，**字节码是针对导入模块的优化**：只有被 `import` 导入的文件才会生成 `.pyc`，仅当作脚本直接运行的顶层入口文件不会保存字节码。
+而且同一个文件在一次程序运行中只会导入、编译一次，后续再次导入会直接复用已加载的内容。
+第 3 章会讲解导入基础，第五部分会深入详解导入机制。
+另外：**交互式命令行里临时敲的代码，永远不会保存字节码**，第 3 章会介绍这种编程模式，本书前期也会频繁用到。
+
+###### The Python Virtual Machine (PVM) Python 虚拟机（PVM）
+程序编译为字节码（或从已有 `.pyc` 加载字节码）后，就会交给 **Python 虚拟机（PVM）** 执行。
+
+PVM 听着很高大上，其实并没有那么神秘：它不是一个独立程序，也不需要单独安装。
+本质上，PVM 就是一个**循环执行逻辑**：逐条读取、解释并执行字节码指令。
+换句话说，**PVM 是 Python 的运行引擎**，是 Python 系统自带的核心组件，也是真正运行你脚本的底层模块，更是 Python 解释器的最后执行环节。
+
+书中的图 2-1 展示了这套运行架构。
+
+![Figure 2-1.the PVM runs compiled bytecode](/probable-adventure/01_Python_and_Backend/assets/diagrams/Figure%202-1.the%20PVM%20runs%20compiled%20bytecode.png)
+
+要记住：这些底层复杂机制都对开发者**完全屏蔽**。字节码编译全自动完成，PVM 也是你安装的 Python 自带组件。开发者只需要专注写代码、运行文件，Python 会在后台自动处理所有底层流程。
+
+###### Performance implications 性能影响
+有 C、C++ 等**完全编译型语言**基础的读者，会明显发现 Python 执行模型的差异：
+1. Python 不需要编译构建、`make` 编译链接等步骤，代码写完就能直接运行；
+2. Python 字节码**不是硬件机器码**（不是英特尔、ARM 等 CPU 可直接执行的指令），而是 Python 专属的中间格式。
+
+当然也有特例：手机端应用打包需要耗时编译，也存在完整 Python 编译器实现，但我们先聚焦最主流的标准模式。
+
+这也解释了第 1 章提到的：**部分 Python 程序运行速度不如 C/C++**。
+因为字节码仍需要 PVM 循环逐条解释执行，相比 CPU 直接执行机器码，字节码指令的执行开销更大。
+但和传统纯解释型语言不同，Python 内置了预编译步骤，不需要反复解析源码文本。
+最终效果：**纯 Python 代码运行速度，介于传统编译型语言和传统解释型语言之间**。
+
+###### Development implications  开发体验影响
+Python 执行模型的另一大特点：**开发环境和运行环境完全一体**。
+负责编译源码和执行源码的是同一套系统。
+这点对有传统编译型语言背景的读者感触更深：Python 的编译器常驻运行环境内部，本身就是程序运行系统的一部分。
+
+这带来了**极快的开发迭代周期**：无需提前编译、链接，写完代码直接就能运行。
+同时让 Python 具备极强的**动态特性**：程序运行过程中，可以动态生成并执行另一段 Python 代码，而且非常便捷。
+例如内置函数 `eval` 和 `exec`，可以接收字符串形式的 Python 代码并直接运行。
+
+这也是 Python 适合**产品定制二次开发**的原因：Python 代码可以随时修改，用户可在现场直接调整系统的 Python 脚本部分，无需重新编译，甚至不需要拥有整套系统的全部源码。
+
+从更底层的角度理解：
+Python 几乎**没有独立的编译阶段**，一切行为都发生在程序运行时。
+包括函数创建、类定义、模块关联等操作，静态语言往往在编译阶段就完成，而 Python 全部在**运行过程中实时处理**。
+这也造就了 Python 远超传统静态语言的**动态编程特性**。
+
+#### WHY DOES PYTHON USE BYTECODE? 为什么 Python 要使用字节码？
+
+既然字节码的运行速度通常**慢于机器码**，那这个问题就很值得思考。简短回答：**Python 使用字节码，是为了兼顾开发效率和语言灵活性**。
+
+展开细说：
+所有程序最终都必须以**机器码**的形式在设备的 CPU 上运行，但程序代码本身只是按照语言规则编写的文本。
+C 这类传统语言的解决方式是：**强制代码贴合 CPU 的底层规范**，并提前把源码文本一次性编译翻译成机器码。
+这种方式运行速度快，但**编译耗时**，而且语言本身使用起来繁琐笨重。
+
+而 Python 设计成了一门**简单易用**的语言，语法和底层机器码差异很大，无法直接翻译成机器码。于是 Python 借助 **PVM（Python 虚拟机）** 作为中间层，先把源码转为字节码，再由虚拟机在 CPU 上运行字节码。
+
+这是典型的**运行速度与易用性之间的取舍**，但也并非非此即彼：
+后文你会学到，很多 Python 衍生实现版本，确实可以把部分 Python 代码直接编译成机器码；
+而且即便沿用 PVM 虚拟机模式，Python 在绝大多数应用场景下速度也完全够用。
+关于这种取舍利弊，可以回看前文《好吧，但 Python 有什么缺点？》一节。
+
+
+#### Execution-Model Variations 执行模型的变体
+
+掌握了上一节介绍的底层执行流程后，你还需要知道：这套流程只代表**目前 Python 的标准实现**，并非 Python 语言本身的强制规范。正因如此，执行模型会随着时间不断演变。事实上，已有很多系统以各种方式改变了前文图 2-1 的经典执行架构。在继续学习之前，我们先来简要了解几种最主流的变体实现。
+
+##### Python Implementation Alternatives Python 的其他实现版本
+截至本书编写之时，Python 语言存在**多种官方实现版本**。这些版本之间会互相借鉴设计思想与技术成果，但各自都是独立安装的软件系统，拥有独立的项目生态和用户群体。
+
+对于大多数 Python 初学者来说，除标准版之外的其他版本都可作了解即可，无需深入钻研。但快速了解它们如何修改执行模型，有助于帮你揭开代码运行原理的神秘面纱。
+
+简单概括：**CPython 是标准实现**，也就是我们前文一直所说的“通用版本”。电脑、手机上默认安装的 Python 基本都是它，绝大多数读者使用的也都是这一版本（如果你不确定，那你用的基本就是 CPython）。本书也以 CPython 为例进行讲解，不过书中介绍的 Python 基础语法，同样适用于其他所有实现版本。
+
+其余所有 Python 实现都有各自的定位目标，有的完整实现了 CPython 定义的 Python 语言规范，有的只实现了大部分核心功能，但都足以被视作合法的 Python 环境。
+
+举例来说：
+PyPy 可以直接替代 CPython，它会在程序运行时对部分代码进一步编译，大幅提升运行速度；
+Jython 和 IronPython 则对 CPython 做了重新实现，分别用于无缝对接 Java 和 .NET 生态组件（虽然标准 CPython 也能借助第三方库调用这类组件，比如通过 pyjnius、Chaquopy 调用 Java，但 Jython 和 IronPython 的融合更加原生）。
+还有其他版本专门用于加速数值计算或通用代码运行效率。
+
+下面简要介绍目前最主流的 Python 实现版本（受篇幅限制略去部分现有版本，也无法预知未来新增版本）：
+
+**CPython: the standard - CPython：标准官方版本**
+
+当需要和其他版本做区分时，我们把 Python 原始、标准的**参考实现**称作 CPython；日常直接称“Python”即可。
+它之所以叫 CPython，是因为其本身由**可移植标准 ANSI C 语言**编写。
+从官网 python.org 下载的电脑版 Python、各大 Linux 软件源预装的 Python、安卓和 iOS 手机端 Python 应用，底层都是 CPython。
+前文图 2-1 的执行架构，描述的也正是 CPython 的运行机制（未来该机制也仍有可能迭代调整，见后文“未来发展趋势”）。
+
+**Jython: Python for Java - Jython：面向 Java 的 Python**
+
+Jython 是 Python 的另一套实现版本，主打与 Java 语言深度集成，就像 CPython 可以和 C、C++ 组件无缝协作一样。
+Jython 由 Java 类构成，能将 Python 源代码编译为 **Java 字节码**，再交由 **Java 虚拟机（JVM）** 执行。
+
+开发者依旧像往常一样在 `.py` 文本文件中编写 Python 代码；Jython 本质上只是把图 2-1 中最右侧两层执行环节，替换成了基于 Java 的等效实现，从而实现和 Java 生态的无缝联动。
+本书编写时，Jython 仍基于老旧的 Python 2.x 版本（本书不涉及），目前正在向 Python 3.x 版本迭代适配。
+
+**IronPython: Python for .NET - IronPython：面向 .NET 的 Python**
+
+IronPython 是 Python 的又一替代实现，由 C# 编写。它设计初衷是让 Python 程序能对接微软 Windows 平台的 **.NET 框架**，以及开源跨平台的 Mono 生态。
+
+和 Jython 类似，IronPython 将图 2-1 最右侧两层执行环节，替换为适配 .NET 环境的等效实现。借助它，Python 代码可以和其他 .NET 语言互相调用，并直接使用丰富的 .NET 类库。
+
+**Stackless: Python for concurrency - Stackless：面向高并发的 Python**
+
+Stackless Python 是标准 CPython 的增强版本，主打**并发编程**场景。
+它不依赖 C 语言调用栈保存程序状态，更容易移植到栈空间受限的硬件架构上。
+同时它提供高效的多任务处理方案，很多开发者认为比 CPython 后续新增的异步协程更简洁易用，还能支撑新颖的编程架构设计。
+知名游戏《EVE Online》便采用 Stackless Python，实现大规模并行任务的高性能调度。
+
+**PyPy: a JIT compiler for speed - PyPy：带即时编译、主打提速的 Python**
+
+PyPy 是为**性能提速**而重新实现的 Python 版本，也是最早为普通 Python 代码引入 **JIT 即时编译器** 的项目之一。
+
+JIT 编译器可以理解为对 Python 虚拟机（图 2-1 最右侧环节）的增强：在程序运行过程中，把部分字节码直接编译为**机器码**，从而大幅提升执行速度。
+PyPy 采用**边运行边编译**的方式，而非提前预编译；它会实时追踪程序处理的数据类型，为动态类型的 Python 生成适配特定类型的机器码。随着程序运行，不断替换热点字节码，让程序越跑越快。
+此外，在 PyPy 环境下运行部分 Python 程序，内存占用也会更低。
+
+**Numba: a JIT compiler for numeric speed - Numba：面向数值计算的即时编译器**
+
+Numba 是 Python 的扩展库，内置 JIT 即时编译器，专门**优化数值计算类代码**，在程序运行时直接将其编译为机器码。
+
+只需通过 Numba 提供的 `@` 装饰器标记函数，就能启用编译器优化。虽然并非所有 Python 代码都能被 Numba 加速，但它对 **NumPy 数组、数学运算循环** 优化效果极佳，同时支持科学计算中常用的代码并行化编程范式。
+
+**Shed Skin: an AOT compiler for conforming code - Shed Skin：适配规范代码的提前编译器**
+
+Shed Skin 是一款 **AOT 提前编译器**，能把写法规范、简洁的原生 Python 代码转译为 C++ 代码，再编译成机器码后运行。
+采用 AOT 编译后，图 2-1 最右侧两层执行环节，会被替换为**预编译好的机器码**。
+Shed Skin 既可以生成独立可执行程序，也能生成可供其他程序调用的扩展模块。
+
+代价是它**仅支持 Python 的部分语法子集**：要求变量遵循隐式静态类型约束，且暂不兼容部分 Python 高级特性和第三方库。即便如此，对于写法规范的代码，Shed Skin 的运行性能往往优于 CPython 和基于 JIT 的实现版本。
+
+**PyThran: an AOT compiler for numeric speed - PyThran：面向科学计算的提前编译器**
+
+PyThran 是另一款针对 Python 语法子集的 AOT 提前编译器，**专注科学计算领域**。
+和 Shed Skin 类似，它将 Python 代码转译为 C++；开发者可通过格式化注释或独立配置文件声明静态类型。
+生成的 C++ 代码编译后，会得到原生扩展模块，可被其他 Python 代码直接导入调用。
+
+**Cython: a Python/C hybrid for speed - Cython：Python 与 C 混合编程、主打性能提速**
+
+Cython 定义了一套 **Python/C 混合语言**，既可以写 Python 代码，又能调用 C 语言函数，还能为变量、参数、类属性声明 C 语言类型。
+
+Cython 代码可通过 AOT 提前编译为兼容 Python/C 接口的 C 代码，最终完全编译为机器码运行。
+虽然不能完全兼容标准 Python 语法，但 Cython 用途广泛：既可封装外部 C 语言库，也能把系统中性能关键的核心模块，编写为高效的 C 扩展，供 CPython 程序调用。
+
+**MicroPython: a Python subset for constraints - MicroPython：面向资源受限环境的 Python 精简版**
+
+MicroPython 主打轻量化与高效性，只实现了 CPython **精简语法子集** 和少量标准库，专门适配**资源受限的硬件环境**。
+最初专为单片机、微控制器设计，如今也能编译为 WebAssembly（第 3 章会介绍），让无完整 CPython 环境的浏览器也能运行 Python 程序。
+
+**当然还有更多版本**
+
+如需了解更多 Python 实现版本，可以查阅 Python 维基百科列表，或自行网页搜索。
+其他主流版本举例：
+Meta 公司开发的 Cinder，基于 CPython 优化、内置 JIT 编译器，用于 Instagram 后台；
+Dropbox 开源的 Pyston，基于 CPython 分支，加入 JIT 与多项性能优化；
+Nuitka 是一款开源付费的优化型 AOT 编译器，可将标准 Python 转译为 C 代码，新兴的 py2wasm 工具也借助它把 Python 编译为 WebAssembly，适配浏览器运行。
+
+总的来说，除非有特殊需求只能依赖某一衍生版本，否则日常开发**优先使用标准 CPython** 即可。作为 Python 的参考实现，它语法特性最完整，版本迭代更新最快、稳定性最强。
+当然，CPython 也不太可能整合 Python 生态中所有的优化项目，等你有明确性能或场景需求时，再按需了解和选用其他实现版本即可。
+
+#### Standalone Executables 独立可执行程序
+
+有时人们口中想要一款“真正的 Python 编译器”，其实他们真正需要的，只是**把 Python 程序打包成独立可执行文件**的方法。
+这更多属于**程序打包与发布**的范畴，而非执行流程原理，相比 Python 初学者，软件开发人员会更关注这一点，但它和执行模型密切相关。
+
+简单来说：借助网上可下载的第三方工具，完全可以把 Python 程序转换成**真正独立、自带运行环境的可执行程序**，在 Python 生态里这类文件也常被称作**冻结二进制文件**。
+无论叫什么名字，这类程序都可以**直接运行，无需目标电脑安装 Python，也不需要附带源代码文件**。
+
+独立可执行程序会把以下内容全部打包到一个安装包里：
+程序文件的字节码、Python 虚拟机（解释器 PVM），以及程序所需的所有 Python 支持文件和库。
+具体打包方式有多种变体，但最终都可以生成**单个可执行文件**（例如 Windows 下的 `.exe`）或**应用程序**（例如 macOS 的 `.app`、安卓的 `.apk/.aab`），方便直接分发给用户。
+对照前文的执行模型图 2-1，相当于把最右侧的两大模块——**字节码 + Python 虚拟机**，合并成了一个整体：独立可执行程序包。
+
+如今有很多工具都能生成独立可执行文件，适配平台和功能各有差异：
+- py2exe：专门打包 Windows 独立程序；
+- PyInstaller、cx_freeze：支持 Windows、macOS、Linux 多平台打包；
+- py2app：用于打包 macOS 应用；
+- Buildozer、Briefcase：可生成安卓、iOS 移动端应用。
+
+**冻结二进制文件并不等同于真正编译器的输出**：它内部依然是通过虚拟机运行字节码。
+因此，除了启动速度可能稍有优化外，冻结程序的**运行速度和原始源码基本一致**。
+这类打包文件体积通常不算小（因为内置了 Python 虚拟机），但以目前的存储标准来看，也不算异常庞大。
+
+优点是：由于程序包内部已经嵌入 Python 环境，**用户电脑无需额外安装 Python** 就能直接运行；
+同时字节码被封装在程序包内，源码也不易被查看和逆向。
+
+更多细节可参考本书附录 A 中关于独立程序打包的补充内容，里面还介绍了**同一套代码跨多平台打包**的实用技巧。
+
+#### Future Possibilities 未来发展趋势
+最后需要注意：本文讲解的运行时执行模型，只是**Python 当前实现版本的产物**，并非 Python 语言本身的硬性规范。
+
+例如，在本书的存续周期内，未来有可能出现一款**完整 AOT 提前编译器**，能够无限制、无特殊改造地把原生 Python 源码直接编译为机器码（不过 Python 发展三十多年都尚未出现这类工具，可能性并不大）；而各类 JIT 即时编译器如今已是遍地开花、越来越普及。
+
+无论未来如何演变，**字节码模式在未来很长一段时间内仍会是主流标准**。
+字节码带来的跨平台可移植性与灵活性，是众多 Python 实现版本的核心优势。
+此外，如果强行增加类型约束声明来支持静态编译，会破坏 Python 本身的**灵活性、简洁性、简约设计理念**，也违背了 Python 的编程精神。
+本书后续会讲到的**类型提示**已经很接近静态类型，但好在目前 Python 解释器本身并不会强制执行类型限制。
 
 ---
 
-### **Chapter 3. How You Run Programs**
-- Installing Python
-- Interactive Code
-  - Starting an Interactive REPL
-  - Where to Run: Code Folders
-  - What Not to Type: Prompts and Comments
-  - Other Python REPLs
-- Running Code Interactively
-- Why the Interactive Prompt?
-  - Learning
-  - Testing
-- Program Files
-  - A First Script
-  - Running Files with Command Lines
-  - Command-Line Usage Variations
-- Other Ways to Run Files
-  - Clicking and Tapping File Icons
-  - The IDLE Graphical User Interface
-  - Other IDEs for Python
-  - Smartphone Apps
-  - WebAssembly for Browsers
-  - Jupyter Notebooks for Science
-  - Ahead-of-Time Compilers for Speed
-- Running Code in Code
-  - Importing modules
-  - Reloading modules
-  - Module attributes: a first look
-  - The exec built-in
-  - Command-line launchers
-- Other Launch Options
-- Which Option Should I Use?
-- Chapter Summary
-- Test Your Knowledge: Quiz
-- Test Your Knowledge: Answers
-- Test Your Knowledge: Part I Exercises
+**注释**
+
+JIT 未来发展展望
+虽然目前 **CPython** 仍沿用图 2-1 所示的**字节码 / Python 虚拟机（PVM）** 运行模型，但未来官方有可能对其进行增强升级。
+
+在本书编写时仍处于开发阶段的 **Python 3.13**，将会加入**实验性 JIT 即时编译器**。和 PyPy 等版本的原理类似，它会在程序**运行过程中**，把部分字节码直接编译为机器码执行。
+
+在 3.13 版本中，该 JIT 带来的性能提升微乎其微，且**默认处于关闭状态**。
+虽然图书出版很难预判未来技术走向，但如果后续这款 JIT 编译器能为 Python 程序带来**显著的综合性能提升**，未来 CPython 很有可能会将其设为**默认启用**。
+
+---
+
+
+#### Chapter Summary 本章小结
+本章介绍了 **Python 的执行模型**——也就是 Python 如何运行你的程序，并讲解了为适配不同应用场景、提升运行性能而衍生的常见执行模型变体。
+
+其实编写 Python 脚本并不需要吃透这些底层内部原理，但大致了解本章内容，能让你在后续开始写代码时，真正看懂程序背后是如何运行的，下一章我们就将正式开始动手实操。
+照例先来本章小测验，回顾所学内容。
+
+#### Test Your Knowledge: Quiz 知识自测
+1. 什么是 Python 解释器？
+2. 什么是源代码？
+3. 什么是字节码？
+4. 什么是 PVM？
+5. 什么是机器码？
+6. 写出两种及以上 Python 标准执行模型的变体。
+7. CPython、Jython 和 IronPython 有什么区别？
+8. PyPy、Shed Skin 和 Cython 分别是什么？
+
+#### Test Your Knowledge: Answers 知识自测：参考答案
+1. **Python 解释器**是用来运行你所编写的 Python 程序的程序。它本质上充当中间层，把 Python 代码指令转换成 CPU 可执行的机器码指令。
+
+2. **源代码**是你为程序编写的代码语句，以文本形式存放在文本文件中，文件后缀通常为 `.py`。
+
+3. **字节码**是 Python 对源码编译后生成的一种低层中间代码形式。在条件允许时，Python 会自动把字节码保存为 `.pyc` 文件，并在需要时自动重新生成。
+
+4. **PVM** 即 **Python 虚拟机**，是 Python 的运行引擎，负责解释并执行编译后的字节码。
+
+5. **机器码**是电脑、手机等设备底层 CPU 所能识别的最低阶指令。所有程序最终都必须以机器码形式运行；因此 Python 代码必须经由 PVM 解释器、JIT 即时编译器或 AOT 提前编译器等软件层，最终转换为机器码执行。
+
+6. Numba、Shed Skin、独立可执行程序，都属于执行模型的变体。
+此外，下一题提到的各类 Python 衍生实现也都以不同方式改动了标准执行模型：有的替换字节码和虚拟机，有的加入 JIT 或 AOT 编译器。
+
+7. CPython 是 Python 的**标准参考实现版本**。
+Jython 专门处理 Python 程序，用于 Java 环境；
+IronPython 专门用于 .NET 环境；
+二者都属于 Python 的替代实现与编译器。
+
+8. PyPy 和 Shed Skin 都是为**提升运行速度**而重新实现的 Python 版本。
+- PyPy 依靠运行时类型信息和 JIT 即时编译器，在程序运行时把部分字节码替换为机器码，从而提速普通 Python 程序。
+- Shed Skin 使用 AOT 提前编译器，将语法受限的 Python 子集转译为 C++，再完整编译为机器码，可生成独立程序或供其他程序调用的模块。
+- Cython 是 **Python 与 C 的混合语言**，可编译成机器码扩展模块，供 CPython 代码调用。
+
+---
+
+### Chapter 3. How You Run Programs
+
+
+#### Installing Python
+#### Interactive Code
+###### Starting an Interactive REPL
+###### Where to Run: Code Folders
+###### What Not to Type: Prompts and Comments
+###### Other Python REPLs
+#### Running Code Interactively
+#### Why the Interactive Prompt?
+###### Learning
+###### Testing
+#### Program Files
+###### A First Script
+###### Running Files with Command Lines
+###### Command-Line Usage Variations
+#### Other Ways to Run Files
+###### Clicking and Tapping File Icons
+###### The IDLE Graphical User Interface
+###### Other IDEs for Python
+###### Smartphone Apps
+###### WebAssembly for Browsers
+###### Jupyter Notebooks for Science
+###### Ahead-of-Time Compilers for Speed
+#### Running Code in Code
+###### Importing modules
+###### Reloading modules
+###### Module attributes: a first look
+###### The exec built-in
+###### Command-line launchers
+#### Other Launch Options
+#### Which Option Should I Use?
+#### Chapter Summary
+#### Test Your Knowledge: Quiz
+#### Test Your Knowledge: Answers
+#### Test Your Knowledge: Part I Exercises
 
 
 ---
