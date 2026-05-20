@@ -52,17 +52,25 @@
 AI is reshaping how startups are built. Founders who’ve never written a line of code are shipping production applications today, and the lean 10-person unicorn has gone from scrappy underdog story to deliberate plan of action.
 人工智能正在重塑初创公司的建立方式。从未写过一行代码的创始人今天也能发布生产级应用程序，而精益的10人独角兽团队已经从“以弱胜强”的奋斗故事，变成了经过深思熟虑的行动计划。
 
+
+
 In 2026, AI can write production code, conduct market research, synthesize competitive landscapes, draft investor materials, and automate operational workflows. By eradicating the once-steep learning curves that even experienced technical founders faced in integrating the tools, platforms, and systems needed to bring their idea to life, AI has above all leveled the playing field around who can launch a startup or build a product.
 在2026年，AI 能够编写生产代码、进行市场调研、综合竞争格局、起草投资者材料，并实现运营工作流的自动化。过去，即使是经验丰富的技术创始人在整合实现创意所需的工具、平台和系统时，也会面临陡峭的学习曲线；而 AI 消除了这些障碍，最重要的是，它在“谁能创办公司或构建产品”这个问题上，彻底拉平了竞争环境。
+
+
 
 In 2026, a good idea gets founders further than ever. Agentic coding compresses what used to take a team of engineers into work a founder can ship themselves.
 在2026年，一个好主意能让创始人走得比以往任何时候都远。智能体编程（Agentic coding）将过去需要一个工程师团队才能完成的工作，压缩成了创始人自己就能交付的成果。
 
+
+
 The traditional startup growth arc assumes that the path from idea to scale is validate → raise → hire → build → raise again → grow → hire more → repeat. Now, AI has erased the expectation that each new phase in the startup lifecycle requires a bigger team, a different skill set, and a fresh funding round.
 传统的初创公司成长轨迹假设，从创意到规模化的路径是：验证 → 融资 → 招聘 → 构建 → 再融资 → 增长 → 继续招聘 → 循环往复。现在，AI 已经打破了这种预期，即初创企业生命周期中的每个新阶段都不再必然需要更大的团队、不同的技能组合以及新一轮的融资。
 
+
+
 This playbook remaps the four core stages of the startup journey (Idea, MVP, Launch, and Scale) according to these new realities. We examine what each stage looks like when AI is core to your technical and organizational development, what the right tools are for each phase, and how founders using these tools are compressing timelines. If you’re ready to map the shortest path between idea and exit, read on.
-本手册根据这些新现实，重新规划了初创之旅的四个核心阶段（创意、MVP、发布和扩展）。我们将探讨当 AI 成为你的技术和组织发展的核心时，每个阶段会是什么样子；每个阶段的正确工具是什么；以及使用这些工具的创始人是如何压缩时间线的。如果你准备好规划从创意到退出的最短路径，请继续阅读。
+本手册根据这些新现实，重新规划了初创之旅的**四个核心阶段（创意、MVP、发布和扩展）**。我们将探讨当 AI 成为你的技术和组织发展的核心时，每个阶段会是什么样子；每个阶段的正确工具是什么；以及使用这些工具的创始人是如何压缩时间线的。如果你准备好规划从创意到退出的最短路径，请继续阅读。
 
 
 
@@ -77,14 +85,20 @@ This playbook remaps the four core stages of the startup journey (Idea, MVP, Lau
 Founders used to be defined by what they could do: technical founders wrote code, non-technical founders ran business ops and closed deals. But the models, systems, and AI agents available to founders in 2026 have dissolved the wall between "people who can build" and "people with ideas worth building."
 过去，创始人是由他们能做的事情来定义的：技术创始人写代码，非技术创始人负责业务运营和敲定交易。但在2026年，创始人所能使用的模型、系统和 AI 智能体已经打破了“能构建产品的人”和“拥有值得构建的想法的人”之间的壁垒。
 
+
+
 AI-native startups are fundamentally transforming what it means to be a founder. Now someone with no engineering background can build production software that brings their idea to life, while a technically adept founder with little business knowledge can easily produce a go-to-market strategy, a financial model, and a highly polished pitch deck.
 AI 原生初创公司正在从根本上改变成为创始人的意义。现在，没有工程背景的人也可以构建出将想法变为现实的生产级软件；而缺乏商业知识但技术精湛的创始人，也能轻松制定出市场推广策略（GTM）、财务模型和极为精美的商业计划书。
 
+
+
 Historically, founders spent the bulk of their time in execution mode: writing code, managing people, handling day-to-day operational work. In an AI-native startup, the founder role becomes much less individual contributor and much more orchestrator of agents—specialized AI assistants that can read files, run commands, execute code, and even browse the web. The founder's attention shifts up the stack toward the higher-order work: generating ideas and directing the systems (AI agents, tools, and whatever small team exists) that carry those ideas out.
-从历史上看，创始人将大部分时间花在执行模式上：编写代码、管理人员、处理日常运营工作。在 AI 原生初创公司中，创始人的角色越来越不像是一个“个人贡献者”，而更像是一个“智能体指挥家”——指挥那些能够读取文件、运行命令、执行代码甚至浏览网页的专用 AI 助手。创始人的注意力在工作栈中向上转移，转向更高阶的工作：产生创意，并指导系统（AI 智能体、工具以及现有的任何小团队）去执行这些创意。
+从历史上看，创始人将大部分时间花在执行模式上：编写代码、管理人员、处理日常运营工作。在 AI 原生初创公司中，创始人的角色越来越不像是一个“个人贡献者”，而更像是一个“**智能体指挥家**”——*指挥那些能够读取文件、运行命令、执行代码甚至浏览网页的专用 AI 助手*。创始人的注意力在工作栈中向上转移，转向更高阶的工作：**产生创意，并指导系统（AI 智能体、工具以及现有的任何小团队）去执行这些创意**。
+
+
 
 The most revolutionary result of AI as central infrastructure, though, is to unblock non-technical founders with subject matter expertise. When the founding pool expands beyond people with engineering backgrounds, you get startups built by people with radically different lived experiences, solving real problems that the traditional tech-founder pipeline never prioritized (or perhaps even noticed).
-然而，将 AI 作为核心基础设施带来的最具革命性的结果，是为具有专业领域知识的非技术创始人扫清了障碍。当创始人群体不再局限于拥有工程背景的人时，你会看到由拥有截然不同生活经验的人所建立的初创公司，他们在解决传统的科技创始人群体从未优先考虑（或者甚至从未注意到）的现实问题。
+然而，将 AI 作为核心基础设施带来的最具革命性的结果，**是为具有专业领域知识的非技术创始人扫清了障碍**。当创始人群体不再局限于拥有工程背景的人时，你会看到由拥有截然不同生活经验的人所建立的初创公司，他们在解决传统的科技创始人群体从未优先考虑（或者甚至从未注意到）的现实问题。
 
 
 
@@ -97,8 +111,14 @@ The most revolutionary result of AI as central infrastructure, though, is to unb
 The traditional startup model assumed you needed to hire engineers to build, salespeople to sell, and ops people to run the business. Headcount was treated as a sign of organizational momentum and product maturity.
 传统初创模式假设你需要雇佣工程师来开发，雇佣销售人员来销售，雇佣运营人员来管理业务。员工人数曾被视为组织势头和产品成熟度的标志。
 
+
+
 Early-stage startups in 2026 are radically different. They’re extremely lean by design, often just the founder alone or a team with a few others. By centering both technical and organizational development on AI as infrastructure, they can reach product validation, early revenue, or even profitability before scaling the team. There are three areas in particular where AI helps a startup function like a much larger org: research, agentic coding, and automating workflows for key business operations.
-2026年的早期初创公司则截然不同。它们在设计上极其精益，通常只有创始人一人或由少数几人组成的团队。通过将技术和组织发展都集中在作为基础设施的 AI 上，他们可以在扩大团队规模之前，就实现产品验证、早期创收甚至盈利。AI 特别在三个领域帮助初创公司发挥出远超其规模的组织效能：研究、智能体编程以及关键业务操作的工作流自动化。
+2026年的早期初创公司则截然不同。它们在设计上极其精益，通常只有创始人一人或由少数几人组成的团队。通过将技术和组织发展都集中在作为基础设施的 AI 上，他们可以在扩大团队规模之前，就实现产品验证、早期创收甚至盈利。AI 特别在三个领域帮助初创公司发挥出远超其规模的组织效能：
+
+- 研究
+- 智能体编程
+- 以及关键业务操作的工作流自动化。
 
 
 
@@ -111,8 +131,12 @@ Early-stage startups in 2026 are radically different. They’re extremely lean b
 *Think: on-call expert for every domain*
 *理念：为每个领域配备随叫随到的专家*
 
+
+
 Consider everything a founder needs to know in the first year that they almost certainly don't know going in: *how do I set up payroll? How do I plan product development sprints? How do I draft a tight investor memo?*
 想一想创始人在第一年需要知道、但在创业之初几乎肯定不知道的所有事情：*我该如何设置薪资系统？我该如何规划产品开发冲刺阶段？我该如何起草一份严谨的投资者备忘录？*
+
+
 
 Early-stage startup questions like these all used to have the same answer, which was *Find someone who knows*. For a bootstrapped or pre-seed founder, this could consume time spent knowledge-gathering instead of building, or possibly requiring burning a chunk of early capital on a consultant. Now, they have AI as an on-call expert across every conceivable domain.
 像这样的早期初创问题，过去的答案都是一致的：*找个懂行的人*。对于自力更生或种子前期的创始人来说，这可能会耗费大量本应用于构建产品的时间去收集知识，或者可能需要烧掉一大笔早期资金来聘请顾问。现在，他们在每一个可以想象的领域都有 AI 作为随叫随到的专家。
@@ -135,14 +159,18 @@ Early-stage startup questions like these all used to have the same answer, which
 *Think: the engineer who's always available, never blocked*
 *理念：永远在线、从不卡壳的工程师*
 
+
+
 Building software used to require a technical co-founder, a contract dev shop, or a long enough runway to hire an engineering team before you'd written a line of production code.
 过去，开发软件需要一位技术联合创始人、一家外包开发公司，或者足够长的资金跑道来雇佣一支工程团队，然后你才能写下第一行生产代码。
 
 Agentic coding tools now allow every aspiring founder to describe what they want to build in plain language and direct AI to generate, test, debug, and refactor a production-grade codebase at the speed and scale of a full engineering team.
 现在，智能体编程工具允许每一位有抱负的创始人用通俗的语言描述他们想要构建的东西，并指导 AI 以整个工程团队的速度和规模，生成、测试、调试和重构生产级的代码库。
 
+
+
 The timeline from “I have an idea” to “I have a product” has compressed. And the founder’s role now centers on what to build and why, while AI handles the actual construction of real infrastructure that’s ready for real users.
-从“我有一个想法”到“我有一个产品”的时间线被极大地压缩了。创始人现在的角色集中在“构建什么”和“为什么构建”上，而 AI 则负责为真实用户实际搭建可用的真实基础设施。
+从“我有一个想法”到“我有一个产品”的时间线被极大地压缩了。**创始人现在的角色集中在“构建什么”和“为什么构建”上**，而 AI 则负责为真实用户实际搭建可用的真实基础设施。
 
 
 
@@ -155,8 +183,12 @@ The timeline from “I have an idea” to “I have a product” has compressed.
 *Think: on-demand, automated ops team*
 *理念：按需响应、自动化的运营团队*
 
+
+
 Even when a founder can research like a consultant and build like an engineering team, there's still a whole category of work beyond strategic planning or product development that still has to get done. Scheduling, updating the CRM, pulling weekly reports, keeping documentation current, publishing content, tracking compliance requirements, managing the connective tissue between the tools and systems the company runs on all have to happen, too. In a lean startup, this load falls mainly on the founder—and it’s a significant tax on the time and attention that should be going toward higher-order decisions.
 即使创始人能像顾问一样做研究，像工程团队一样做开发，但除了战略规划或产品开发之外，还有一整类工作仍需完成。安排日程、更新 CRM、提取周报、保持文档更新、发布内容、跟踪合规要求、管理公司运行所依赖的工具和系统之间的连接关系，这些事情都必须有人去做。在精益初创公司中，这些重担主要落在创始人身上——这是对本应用于高阶决策的时间和注意力的一种巨大消耗。
+
+
 
 Workflow automation with AI tools offloads that tax. Recurring operational tasks can be configured to happen automatically so that the CRM updates when a deal moves, a weekly report compiles itself, and product documentation gets updated in sync with product changes. And, crucially, Claude Cowork integrates with the interconnected systems a startup runs on—your project management tool, your communication stack, your data sources—without needing someone to build and maintain those integrations. In Day Zero startups, that someone is almost always the founder.
 利用 AI 工具进行工作流自动化卸下了这种负担。可以配置重复性的运营任务让其自动执行：当交易进展时 CRM 会自动更新，每周报告会自动汇总，产品文档会与产品变更同步更新。而且，至关重要的是，Claude Cowork 能够与初创公司运行所在的互联系统（你的项目管理工具、你的沟通软件栈、你的数据源）进行集成，而不需要有人去专门构建和维护这些集成。在从零开始的初创公司里，那个“有人”几乎总是创始人自己。
@@ -172,8 +204,10 @@ Workflow automation with AI tools offloads that tax. Recurring operational tasks
 Founders that effectively harnesses AI’s research, automation, and agentic coding capabilities can build a startup that operates with far more leverage than its headcount suggests. They also get to dedicate the majority of their time and bandwidth to the work that actually matters.
 能够有效利用 AI 的研究、自动化和智能体编程能力的创始人，可以建立一家运营杠杆远超其员工人数的初创公司。他们还能将大部分时间和精力投入到真正重要的工作上。
 
+
+
 This work doesn’t happen on autopilot; the founder orchestrating these AI tools needs to know how (and when) to apply them. The rest of this playbook is dedicated to exploring the goals and challenges founders will encounter as they follow the AI-native startup path, and how to effectively apply AI tools at each stage of the journey.
-这些工作并不是自动驾驶就能完成的；调度这些 AI 工具的创始人需要知道如何（以及何时）应用它们。本手册的其余部分将致力于探讨创始人在遵循 AI 原生初创路径时将遇到的目标和挑战，以及如何在旅程的每个阶段有效地应用 AI 工具。
+这些工作并不是自动驾驶就能完成的；**调度这些 AI 工具的创始人需要知道如何（以及何时）应用它们**。本手册的其余部分将致力于探讨创始人在遵循 AI 原生初创路径时将遇到的目标和挑战，以及如何在旅程的每个阶段有效地应用 AI 工具。
 
 
 
@@ -186,10 +220,12 @@ This work doesn’t happen on autopilot; the founder orchestrating these AI tool
 
 
 Every startup founder starts from the same place: a problem they can't stop thinking about. This is the startup phase where idea meets reality: startup success in 2026 requires the discipline of not building until the evidence justifies it.
-每位初创企业创始人都是从同一个起点开始的：一个他们无法停止思考的问题。这是创意与现实碰撞的初创阶段：在2026年，初创企业的成功需要一种自律——在有充足证据支持之前，绝对不要动手构建。
+每位初创企业创始人都是从同一个起点开始的：**一个他们无法停止思考的问题**。这是创意与现实碰撞的初创阶段：在2026年，初创企业的成功需要一种自律——**在有充足证据支持之前，绝对不要动手构建**。
+
+
 
 The work in this stage is research, customer discovery, competitive analysis, and honest evaluation of disconfirming evidence, all before asking Claude Code to generate your first line of production code.
-在要求 Claude Code 生成第一行生产代码之前，现阶段的工作是：研究、客户发现、竞争分析，以及对相反证据的诚实评估。
+在要求 Claude Code 生成第一行生产代码之前，现阶段的工作是：**研究、客户发现、竞争分析，以及对相反证据的诚实评估**。
 
 
 
@@ -202,16 +238,27 @@ The work in this stage is research, customer discovery, competitive analysis, an
 While in the Idea stage, the founder’s main goal is **research-oriented validation**: assembling solid evidence that a real problem exists (and that your proposed solution effectively addresses it) before committing resources to building.
 在创意阶段，创始人的主要目标是进行**以研究为导向的验证**：在投入资源进行构建之前，收集确凿的证据，证明确实存在一个真实的问题（并且你提出的解决方案能有效地解决它）。
 
+
+
 Practically speaking, the Idea stage is a series of questions a founder has to answer in roughly this order:
 具体来说，创意阶段是创始人必须大致按以下顺序回答的一系列问题：
 * Is this problem real, specific, and frequent enough to build around?
-* 这个问题是真实的、具体的，并且发生频率高到值得围绕它进行构建吗？
+
+  这个问题是真实的、具体的，并且发生频率高到值得围绕它进行构建吗？
+
 * Who exactly has it, and is that a market?
-* 究竟是谁遇到了这个问题，这是一个市场吗？
+
+  究竟是谁遇到了这个问题，这是一个市场吗？
+
 * Is anyone else solving it, and if so, how and how well?
-* 有没有其他人在解决这个问题？如果有，他们是如何解决的，解决得怎么样？
+
+  有没有其他人在解决这个问题？如果有，他们是如何解决的，解决得怎么样？
+
 * What would a solution actually need to do in order to solve this problem, and does my idea do that?
-* 为了解决这个问题，解决方案实际上需要做什么？我的想法能做到吗？
+
+  为了解决这个问题，解决方案实际上需要做什么？我的想法能做到吗？
+
+
 
 The results of these inquiries add up to answer a single, ultimate question: Is this worth building?
 这些调查的结果加起来只为了回答一个最终问题：这值得去做吗？
@@ -230,14 +277,22 @@ That means getting specific before you get moving. "People struggle with expense
 The Idea stage exit condition is finding **problem-solution fit**. You’ve established qualitative evidence, primarily from real human conversations, that you're solving a real problem for real people before you start building the thing that solves it.
 创意阶段的退出条件是找到**问题与解决方案的契合度（Problem-solution fit）**。在你开始构建解决问题的产品之前，你已经建立了定性证据（主要来自真实的人类对话），证明你正在为真实的人解决真实的问题。
 
+
+
 You're ready to leave the Idea stage when you can answer yes to all three of the following:
 当你能对以下三个问题都回答“是”时，你就可以结束创意阶段了：
+
 1. **Is the problem real and specific?** Answering in the affirmative here requires that you can name exactly who experiences this problem, how often they encounter it, how severely it affects them, and what they currently do about it.
-1. **这个问题是真实的且具体的吗？** 对此给出肯定的回答，要求你能准确说出是谁遇到了这个问题、他们多久遇到一次、这个问题对他们的影响有多严重，以及他们目前是如何应对的。
+
+   **这个问题是真实的且具体的吗？** 对此给出肯定的回答，要求你能准确说出是谁遇到了这个问题、他们多久遇到一次、这个问题对他们的影响有多严重，以及他们目前是如何应对的。
+
 2. **Does your solution address the actual problem?** Not the problem you originally assumed, but the one the validation process revealed. Sometimes these are the same thing, but not always.
-2. **你的解决方案能解决实际问题吗？** 不是你最初假设的问题，而是验证过程中揭示的问题。有时它们是同一回事，但并非总是如此。
+
+   **你的解决方案能解决实际问题吗？** 不是你最初假设的问题，而是验证过程中揭示的问题。有时它们是同一回事，但并非总是如此。
+
 3. **Do you have enough signal to justify building?** You will never have certainty at this stage, and waiting for it is its own failure mode, but you need enough qualitative evidence that committing to an MVP is a reasoned decision over an act of faith.
-3. **你有足够的信号来证明值得构建吗？** 在这个阶段你永远无法获得100%的确定性，一直等待确定性本身就是一种失败模式，但你需要足够的定性证据，证明投入开发 MVP 是一个经过深思熟虑的决策，而不是盲目的信仰之跃。
+
+   **你有足够的信号来证明值得构建吗？** 在这个阶段你永远无法获得100%的确定性，一直等待确定性本身就是一种失败模式，但你需要足够的定性证据，证明投入开发 MVP 是一个经过深思熟虑的决策，而不是盲目的信仰之跃。
 
 
 
@@ -248,7 +303,7 @@ You're ready to leave the Idea stage when you can answer yes to all three of the
 
 
 The Idea stage is where the most important work of your startup journey happens, because it’s where the most consequential mistakes are made: getting something wrong now can quickly run your budding venture right off the rails. The majority of ideation phase challenges involve moving faster than your understanding justifies, though, so founders who proceed with thoughtfulness and deliberation will experience steady progress.
-创意阶段是你初创之旅中最重要工作发生的地方，因为这也是最容易犯下严重错误的地方：现在弄错一些事情，很快就会让你刚刚萌芽的事业偏离正轨。创意阶段的大多数挑战都源于“行动速度快于认知深度”，因此，深思熟虑且从容不迫的创始人将能体验到稳步的进展。
+创意阶段是你初创之旅中最重要工作发生的地方，因为这也是最容易犯下严重错误的地方：现在弄错一些事情，很快就会让你刚刚萌芽的事业偏离正轨。**创意阶段的大多数挑战都源于“行动速度快于认知深度”**，因此，深思熟虑且从容不迫的创始人将能体验到稳步的进展。
 
 
 
