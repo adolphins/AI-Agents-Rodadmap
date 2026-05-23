@@ -12,7 +12,7 @@
 > **A curated, hands-on roadmap from zero to production-grade AI Agents.**  
 > Focus on **RAG** and **Agent Systems** — the two most in-demand skills for AI application engineers.
 
-[简体中文](README.md)
+[简体中文](README_CN.md)
 
 </div>
 
