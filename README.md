@@ -1,5 +1,24 @@
 <div align="center">
 
+
+# key Reference for eDC
+
+## understaning the semantic layer
+
+https://medium.com/data-driven-diaries/understanding-the-semantic-layer-c98c88c50e5e
+
+https://dev.to/alexmercedcoder/semantic-layer-the-definitive-guide-5h6i
+
+https://www.getdbt.com/discover/understanding-the-semantic-layer
+
+https://www.databricks.com/blog/semantic-layer-architecture-components-design-patterns-and-ai-integration
+
+https://atlan.com/know/open-ai-frontier-vs-semantic-layer/
+
+https://claude.com/blog/how-anthropic-enables-self-service-data-analytics-with-claude
+
+
+
 # 🚀 AI Agent 开发学习路径
 
 [![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)](https://www.python.org/)
