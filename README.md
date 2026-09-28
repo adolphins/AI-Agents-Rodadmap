@@ -63,18 +63,11 @@ AI Agent 工程师知识体系
     └── 推理优化：vLLM / TGI
 ```
 
-
-
-
-
 <div align="center">
 
 **保持好奇，持续动手 —— 祝你顺利走完这条 AI Agent 之路！** ⭐
 
 </div>
-
-
-https://huggingface.co/learn/nlp-course
 
 
 ## 📚 Reference Links
