@@ -67,6 +67,7 @@ AI Agent 工程师知识体系
 
 </div>
 
+https://dev.to/cypriantinasheaarons/the-ai-agents-roadmap-nobody-is-talking-about-2026-edition-5774
 
 ## 📚 Reference Links
 
