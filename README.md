@@ -1,19 +1,10 @@
-<div align="center">
+# 🚀 AI Agents 学习路线图
 
-# 🚀 AI Agents Self-Learning Handbook
+在 AI 驱动的时代，与 LLM 及 Agents 的协作已成为各岗位的核心能力。本项目是一份系统的 **AI Agents 学习路线图和资源集合**，旨在帮助开发者从零开始掌握 Agent 的核心知识。
 
-</div>
+---
 
-在 AI 驱动的时代，与 LLM 及 Agents 的协作已成为各岗位的核心能力。
-
-无论您的职能背景如何，掌握 AI Agents 的核心知识都是应对未来挑战、提升工作效能的必要基础, 也将是你在智能时代保持竞争力的关键一步。
-
-
-## 前置导读：AI Agents 高层架构概览
-
-在正式深入之前，我们为何要先了解 Agents 的架构？这并非要求初学者立即掌握底层细节，而是旨在建立一个 High-Level 的全局认知。
-
-
+## 核心知识体系（7 层）
 
 ```
 AI Agent 工程师知识体系
@@ -34,10 +25,12 @@ AI Agent 工程师知识体系
 │   ├── Semantic Layer：指标、维度、实体、血缘
 │   └── 受控 Metric API，避免 Agent 任意写 SQL
 │
-├── 4. Agent 与工具调用【核心】
-│   ├── Function Calling / Tool Use
-│   ├── MCP Client / Server
-│   ├── ReAct、Plan-and-Execute、工作流
+├── 4. Agent 与工具调用【核心】 ⭐
+│   ├── Agent 核心概念、特征、对比
+│   ├── Function Calling 原理与 Tool 设计
+│   ├── 四大设计模式（Reflection / Tool Use / Planning / Multi-Agent）
+│   ├── 三种工作流（ReAct / Plan-Execute / Router）
+│   ├── MCP 协议与标准化工具集成
 │   ├── API、数据库、SaaS、浏览器等工具集成
 │   └── Human-in-the-Loop 人工审批
 │
@@ -61,10 +54,81 @@ AI Agent 工程师知识体系
     └── 推理优化：vLLM / TGI
 ```
 
-<div align="center">
+### 知识体系说明
 
-**保持好奇，持续动手 —— 祝你顺利走完这条 AI Agent 之路！** ⭐
+- **第 1-3 层**：基础铺垫，必须掌握
+- **第 4-5 层**：Agent 的核心，最关键的两层
+- **第 6 层**：全程贯穿于前面所有层次（非可选）
+- **第 7 层**：进阶专题，根据应用场景选取
 
-</div>
+---
 
+## 学习规划
 
+| Step  | 对应层级    | 预计时间  | 学习目标            |
+| ----- | ------- | ----- | --------------- |
+| **1** | 第 1-3 层 | 5-7 天 | 理解 Agent 架构本质   |
+| **2** | 第 4 层   | 2-3 周 | 掌握工具调用机制        |
+| **3** | 第 4-5 层 | 2-3 周 | 学习 Agent 编排与生产化 |
+| **4** | 第 5-6 层 | 1-2 周 | 确保安全与可观测性       |
+
+**总计：6-10 周 从入门到生产级别**
+
+---
+
+## 📚 项目结构
+
+```
+AI-Agents-Rodadmap/
+├── README.md （你在这里）
+├── docs/ （知识体系详解）
+│   ├── README.md （使用说明）
+│   ├── 01-software-basics.md
+│   ├── 02-llm-basics.md
+│   ├── 03-rag-semantic.md
+│   ├── 04-agent-tools.md ⭐ 核心层
+│   ├── 05-runtime-production.md
+│   ├── 06-security-governance.md
+│   └── 07-advanced-topics.md
+└── reference/ （学习资源）
+    ├── learning-resources.md （详细学习资源列表）
+    ├── reference-links.md （50+ 参考链接）
+    └── framework-comparison.md （框架对比：LangGraph/CrewAI/AutoGen）
+```
+
+---
+
+## 🎯 如何使用本项目
+
+### 第 1 步：了解知识体系
+
+仔细阅读上面的"核心知识体系"，理解 7 层结构和学习路径。
+
+### 第 2 步：根据学习进度选择资源
+
+根据 Step 1-4，参考相应的学习资源：
+
+- 📖 [完整学习资源列表](./reference/learning-resources.md) - 按知识体系分层推荐
+- 🔗 [参考链接汇总](./reference/reference-links.md) - 所有推荐资源的链接
+- 🔧 [框架对比指南](./reference/framework-comparison.md) - 选择合适的框架
+
+### 第 3 步：深入学习
+
+根据学习进度，阅读 `docs/` 目录中对应的详解文件：
+
+- **Step 1** → [docs/01-03](./docs/) （基础知识）
+- **Step 2** → [docs/04](./docs/04-agent-tools.md) （Agent 核心）
+- **Step 3** → [docs/04-05](./docs/) （编排与生产化）
+- **Step 4** → [docs/06](./docs/06-security-governance.md) （安全与治理）
+
+### 第 4 步：动手实践
+
+- 完成推荐课程中的代码练习
+- 用选定的框架实现简单 Agent
+- 基于自己的应用场景设计方案
+
+---
+
+## 📄 许可证
+
+本项目采用 MIT License，详见 [LICENSE](./LICENSE)
